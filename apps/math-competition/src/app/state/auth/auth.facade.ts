@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store'
-import { initAuth, login, logout } from './auth.actions'
+import { forgotPassword, initAuth, login, logout, register } from './auth.actions'
 import { selectLoading, selectLoginError, selectUID } from './auth.selectors'
 
 @Injectable({
@@ -19,9 +19,17 @@ export class AuthFacade {
     this.store$.dispatch(login({ email, password }))
   }
 
-  constructor(private store$: Store<any>) {}
+  register({ email, password }) {
+    this.store$.dispatch(register({ email, password }))
+  }
+
+  forgotPassword({ email }) {
+    this.store$.dispatch(forgotPassword({ email }))
+  }
 
   logout() {
     this.store$.dispatch(logout())
   }
+
+  constructor(private store$: Store<any>) {}
 }

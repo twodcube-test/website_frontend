@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators'
 import { AngularFireAuth } from '@angular/fire/auth'
-import { authenticated, initAuth, login, loginError, logout, noop, notAuthenticated } from './auth.actions'
+import { authenticated, forgotPassword, initAuth, login, loginError, logout, notAuthenticated, register } from './auth.actions'
 import { from, of } from 'rxjs'
 import { Router } from '@angular/router'
 
@@ -12,7 +12,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(initAuth),
       exhaustMap(() => this.afAuth.authState),
-      map(x => {
+      map((x) => {
         if (x) {
           return authenticated({ uid: x.uid })
         } else {
@@ -22,19 +22,20 @@ export class AuthEffects {
     )
   )
 
-  login$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(login),
-      exhaustMap(({ email, password }) =>
-        from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(
-          map(() => {
-            this.router.navigate(['/waiting'])
-            return noop()
-          }),
-          catchError(error => of(loginError({ error })))
+  login$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(login),
+        exhaustMap(({ email, password }) =>
+          from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(
+            map(() => {
+              return of(this.router.navigate(['/waiting']))
+            }),
+            catchError((error) => of(loginError({ error })))
+          )
         )
-      )
-    )
+      ),
+    { dispatch: false }
   )
 
   logout$ = createEffect(
@@ -50,35 +51,31 @@ export class AuthEffects {
       ),
     { dispatch: false }
   )
-  /**
-  @Effect()
-  login: Observable<Action> = this.actions$.pipe(
-    ofType(authActions.LOGIN),
-    map((action: authActions.Login) => action.payload),
-    switchMap(payload => {
-      return fromPromise(this.afAuth.auth.signInWithEmailAndPassword(payload.email, payload.password))
-    }),
-    map(() => {
-      return new authActions.GetUser()
-    }),
-    catchError(err => {
-      return of(new authActions.AuthError({ error: err.message }))
-    })
+
+  register$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(register),
+        exhaustMap(({ email, password }) => {
+          return of(this.afAuth.createUserWithEmailAndPassword(email, password))
+        }),
+        tap(() => {
+          return this.router.navigate(['/home'])
+        })
+      ),
+    { dispatch: false }
   )
-  D
-  @Effect()
-  logout: Observable<Action> = this.actions$.pipe(
-    ofType(authActions.LOGOUT),
-    switchMap(() => {
-      return fromPromise(this.afAuth.auth.signOut())
-    }),
-    map(() => {
-      return new authActions.GetUser()
-    }),
-    catchError(err => {
-      return of(new authActions.AuthError({ error: err.message }))
-    })
-  )*/
+
+  forgotPassword$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(forgotPassword),
+        exhaustMap(({ email }) => {
+          return of(this.afAuth.sendPasswordResetEmail(email))
+        })
+      ),
+    { dispatch: false }
+  )
 
   constructor(private actions$: Actions, private afAuth: AngularFireAuth, private router: Router) {}
 }
