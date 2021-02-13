@@ -2592,12 +2592,12 @@
   dependencies:
     tslib "^1.7.1"
 
-"@ngx-loading-bar/http-client@4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/http-client/-/http-client-4.2.0.tgz#62f498c6860a9d460df4f1ef6173608168bdbfe6"
-  integrity sha512-r8M9XAdKZC98LQhxyDA+pq5V9SS471VLI82UlsnBz17i3K2cHWVBjkwomEQq9i2xBNS14DOY/tAlxUlX+WAhSg==
+"@ngx-loading-bar/http-client@5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/http-client/-/http-client-5.1.1.tgz#654be3b7132c5a038b25a995c59cbdec0c4f1f30"
+  integrity sha512-ZWPHsjixuVFYzIb/vF39dLkLaMKdcGbm0p8HzBwbvefNpxDHpy+dxnD2GwJCHjdEpm+KuxHfyVDgaJRiajXUrw==
   dependencies:
-    tslib "^1.9.0"
+    tslib "^1.10.0"
 
 "@ngx-loading-bar/router@4.2.0":
   version "4.2.0"
