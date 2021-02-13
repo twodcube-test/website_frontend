@@ -2585,12 +2585,12 @@
     "@nguniversal/common" "10.1.0"
     tslib "^2.0.0"
 
-"@ngx-loading-bar/core@4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/core/-/core-4.2.0.tgz#cf0cc209eb967bd7625c2cec565841890cd5e17e"
-  integrity sha512-sfVmsDoLr9zI7ylzPct4wefi6zWBPyekQIhJVhME3h9sPh8S+BHy5loKgUqiZR3YduRNr8boLh4GkHpL3eXEPg==
+"@ngx-loading-bar/core@5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@ngx-loading-bar/core/-/core-5.1.1.tgz#eb95bbdd9d880c9dd93ae089c47b37cfd63b0b18"
+  integrity sha512-ODXZ+Op1NtRiEKqh1CU2nwmb5GgI7iGMuT2uji8e6dgfKIEgIl5/BhYyKszlTmttID/tU25FdKFnv0RtAL4KUA==
   dependencies:
-    tslib "^1.7.1"
+    tslib ">=1.7.1"
 
 "@ngx-loading-bar/http-client@4.2.0":
   version "4.2.0"
@@ -14185,7 +14185,12 @@ tslib@2.0.3, tslib@^2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-tslib@>=1.9.0, tslib@^1.7.1, tslib@^1.8.1:
+tslib@>=1.7.1:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
+  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
+
+tslib@>=1.9.0, tslib@^1.8.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
